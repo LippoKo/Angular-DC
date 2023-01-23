@@ -1,17 +1,18 @@
 <label for="">Nome da Escola</label>
-<!-- <input type="text" class="form-control" (input)="updateSchoolName($event)" /> -->
+
 <input type="text" class="form-control" [(ngModel)]="schoolName" />
 <p>{{ schoolName }}</p>
 
 <button
-  class="btn btn-primary"
+  class="btn btn-primary mt-2 mb-2"
   [disabled]="!addSchool"
   (click)="createSchool()"
 >
   Incluir
 </button>
 
-<p>{{ createdSchoolStatus }}</p>
+<p *ngIf="schoolCreated">A escola foi criada com o nome de: {{ schoolName }}</p>
+<p *ngIf="!schoolCreated">{{ createdSchoolStatus }}</p>
 
-<app-school></app-school>
-<app-school></app-school>
+<app-school *ngFor="let school of schools"></app-school>
+<p *ngFor="let school of schools; let i = index">{{ i }}: {{ school }}</p>
